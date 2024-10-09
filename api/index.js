@@ -1,24 +1,43 @@
+// Import dependencies
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import userRoutes from './routes/user.route.js'
 
+// Import route files (using default export)
+import doctorRoutes from './routes/doctorRoutes.js';
+import patientRoutes from './routes/patientRoutes.js';
+import staffRoutes from './routes/staffRoutes.js';
+
+// Configure environment variables
 dotenv.config();
 
-mongoose.connect(
-    process.env.MONGODB
-)
-.then(()=> {
-    console.log('MongoDb is connected');
-}).catch((err)=>{
-    console.log(err);
-});
-
+// Initialize Express app
 const app = express();
+
+// Middleware to parse JSON
 app.use(express.json());
 
-app.listen(8090,()=> {
-    console.log('Server is running on port 8090!!')
-})
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('MongoDB is connected');
+  })
+  .catch((error) => {
+    console.error('Error connecting to MongoDB:', error.message);
+  });
 
-app.use('/api/test',userRoutes);
+// Define routes
+app.use('/api/doctors', doctorRoutes);
+app.use('/api/patients', patientRoutes);
+app.use('/api/staff', staffRoutes);
+
+// Handle undefined routes (optional)
+app.use((req, res) => {
+  res.status(404).json({ message: 'Endpoint not found' });
+});
+
+// Start the server
+const PORT = process.env.PORT || 8090;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}!`);
+});
