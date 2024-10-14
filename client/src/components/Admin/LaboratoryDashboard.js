@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import DashboardHeader from "../DashboardHeader";
+import SideBar from "../SideBar";
 
-const SideBar = () => {
+import AddPatientReport from "../AddPatientReport";
+import AddLabTest from "../AddLabTest";
+import LabTests from "../LabTests";
+
+const LaboratoryDashboard = () => {
   return (
-    <div className="nav-bar">
+    <div>
+      <DashboardHeader />
+
+      <div className="main-container">
+      <div className="nav-bar">
           <ul className="nav-list">
             <a href="/laboratory">
               <li className="nav-element active-element">Laboratory</li>
@@ -21,7 +31,15 @@ const SideBar = () => {
             </a>
           </ul>
         </div>
+
+        <div className="content-container">
+          <AddLabTest />
+
+          <LabTests />
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default SideBar;
+export default LaboratoryDashboard;

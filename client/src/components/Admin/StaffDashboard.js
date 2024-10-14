@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from "react";
-import DashboardHeader from "./DashboardHeader";
-import SideBar from "./SideBar";
+import React from "react";
+import DashboardHeader from "../DashboardHeader";
+import SideBar from "../SideBar";
+import AddDoctor from "./AddDoctor";
+import AddStaff from "../AddStaff";
+import AllStaff from "../AllStaff";
 
-import AddPatientReport from "./AddPatientReport";
-import AddLabTest from "./AddLabTest";
-import LabTests from "./LabTests";
-
-const LaboratoryDashboard = () => {
+const StaffDashboard = () => {
   return (
     <div>
       <DashboardHeader />
 
       <div className="main-container">
-        <div className="nav-bar">
+      <div className="nav-bar">
           <ul className="nav-list">
             <a href="/laboratory">
-              <li className="nav-element active-element">Laboratory</li>
+              <li className="nav-element">Laboratory</li>
             </a>
             <a href="/staff">
-              <li className="nav-element">Staff Management</li>
+              <li className="nav-element active-element">Staff Management</li>
             </a>
             <a href="/doctor">
               <li className="nav-element">Add Doctor</li>
@@ -32,14 +31,14 @@ const LaboratoryDashboard = () => {
           </ul>
         </div>
 
-        <div className="content-container">
-          <AddLabTest />
+        <div className='content-container'>
+         <AddStaff />
 
-          <LabTests />
+         <AllStaff />
         </div>
       </div>
     </div>
   );
 };
 
-export default LaboratoryDashboard;
+export default StaffDashboard;
