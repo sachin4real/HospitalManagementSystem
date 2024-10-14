@@ -4,10 +4,8 @@ import SinglePrescription from "./SinglePrescription";
 import jsPDF from "jspdf";
 
 const SingleAppointment = ({ apt }) => {
-
   const logo = new Image();
   logo.src = "/images/Hospital-logo-W.png";
-
 
   const [patient, setPatient] = useState("");
   const [pid, setPid] = useState(apt.patient);
@@ -22,34 +20,38 @@ const SingleAppointment = ({ apt }) => {
   const [nightQ, setNightQ] = useState(0);
 
   const [text, setText] = useState("");
-
   const [drug, setDrug] = useState("");
-
+  const [price, setPrice] = useState(0); // New state for price
+  const [inventory, setInventory] = useState([]); // New state for inventory
   const [prescriptions, setPrescriptions] = useState([]);
 
-  const addToPres = async (e) => {
-    e.preventDefault();
-
-    setText(
-      `${text}\n  ${drug} [ ${beforAfter} Meal ] :\n\t Morning - ${morningQ} \n\t Evening - ${eveningQ} \n\t Night - ${nightQ} \n`
-    );
-
-    alert("Prescription added!!!!!");
-    console.log(text);
-  };
-
   useEffect(() => {
-    
+    axios
+      .get("http://localhost:8070/inventory")
+      .then((response) => {
+        setInventory(response.data); // Assuming response.data contains the inventory items
+      })
+      .catch((error) => {
+        console.error("Error fetching inventory:", error);
+      });
+
     getPrescriptions();
     patientDetails();
   }, []);
+
+  const addToPres = async (e) => {
+    e.preventDefault();
+    setText(
+      `${text}\n  ${drug} [ ${beforAfter} Meal ] (Price: $${price}) :\n\t Morning - ${morningQ} \n\t Evening - ${eveningQ} \n\t Night - ${nightQ} \n`
+    );
+    alert("Prescription added!");
+  };
 
   const patientDetails = async () => {
     axios
       .get(`http://localhost:8070/patient/get/${apt.patient}`)
       .then((res) => {
         setPatient(res.data.patient);
-        console.log(res.data.patient);
       })
       .catch((err) => {
         localStorage.removeItem("token");
@@ -57,25 +59,22 @@ const SingleAppointment = ({ apt }) => {
       });
   };
 
-  const getPrescriptions = async (e) => {
+  const getPrescriptions = async () => {
     axios
-      .get(
-        `http://localhost:8070/prescription/appointmentPrescriptions/${apt._id}`
-      )
+      .get(`http://localhost:8070/prescription/appointmentPrescriptions/${apt._id}`)
       .then((res) => {
-        console.log(res.data.data);
         setPrescriptions(res.data.data);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   };
 
-  const handleBeforeAndAfter = async (e) => {
+  const handleBeforeAndAfter = (e) => {
     setBeforeAfter(e.target.value);
   };
 
-  const generatePres = async (e) => {
+  const generatePres = (e) => {
     e.preventDefault();
 
     const newPrescription = {
@@ -85,20 +84,20 @@ const SingleAppointment = ({ apt }) => {
     };
 
     axios
-      .post(`http://localhost:8070/prescription/add`, newPrescription)
+      .post("http://localhost:8070/prescription/add", newPrescription)
       .then(() => {
-        alert("Prescription added!!!");
+        alert("Prescription added!");
       })
       .catch((err) => {
         alert(err);
       });
   };
 
-  const markConsulted = async () => {
+  const markConsulted = () => {
     axios
       .put(`http://localhost:8070/appointment/markConsulted/${apt._id}`)
-      .then((res) => {
-        alert("Appointment Marked as consulted");
+      .then(() => {
+        alert("Appointment marked as consulted");
       })
       .catch((err) => {
         alert(err);
@@ -108,7 +107,6 @@ const SingleAppointment = ({ apt }) => {
   function downloadProfile() {
     const doc = new jsPDF();
     const margin = 10;
-    const lineHeight = 5;
 
     const text = `\n\nPatient Report \n\n
       Name : ${patient.firstName}  ${patient.lastName} \n
@@ -122,248 +120,171 @@ const SingleAppointment = ({ apt }) => {
       Civil Status : ${patient.civilStatus} \n
       Medical Status : ${patient.medicalStatus}\n
       Emergency Phone : ${patient.emergencyPhone}\n
-      Gaurdian Name : ${patient.gaurdianName}\n
-      Gaurdian NIC : ${patient.gaurdianNIC}\n
-      Gaurdian Phone No : ${patient.gaurdianPhone}\n
+      Guardian Name : ${patient.guardianName}\n
+      Guardian NIC : ${patient.guardianNIC}\n
+      Guardian Phone No : ${patient.guardianPhone}\n
       Insurance No : ${patient.insuranceNo} \n
-      Insurnace Company : ${patient.insuranceCompany} \n
-  
-      `;
-    const splitText = doc.splitTextToSize(
-      text,
-      doc.internal.pageSize.width - margin * 2
-    );
+      Insurance Company : ${patient.insuranceCompany} \n`;
+
+    const splitText = doc.splitTextToSize(text, doc.internal.pageSize.width - margin * 2);
     doc.text(splitText, 10, 60);
 
     const pdfWidth = doc.internal.pageSize.getWidth();
     const pdfHeight = doc.internal.pageSize.getHeight();
 
-    const canvas1 = document.createElement('canvas');
+    const canvas1 = document.createElement("canvas");
     canvas1.width = logo.width;
     canvas1.height = logo.height;
-    const ctx1 = canvas1.getContext('2d');
+    const ctx1 = canvas1.getContext("2d");
     ctx1.drawImage(logo, 0, 0, logo.width, logo.height);
-    const dataURL1 = canvas1.toDataURL('image/png');
+    const dataURL1 = canvas1.toDataURL("image/png");
 
-    doc.addImage(dataURL1, 'PNG', 5 , 5 , (pdfWidth/4) , (pdfWidth/4) * (logo.height / logo.width));
-
-    doc.text(
-      "Helasuwa.lk \nTel: 0771231231 \nAddress No: No:11,Kandy road,\n",
-      pdfWidth / 4 + 15,
-      20
-    );
+    doc.addImage(dataURL1, "PNG", 5, 5, pdfWidth / 4, (pdfWidth / 4) * (logo.height / logo.width));
+    doc.text("Helasuwa.lk \nTel: 0771231231 \nAddress: No:11, Kandy road", pdfWidth / 4 + 15, 20);
 
     doc.save(`${patient._id}.pdf`);
   }
+
+  // Handle selecting a drug and setting its price
+  const handleDrugChange = (e) => {
+    const selectedDrug = e.target.value;
+    setDrug(selectedDrug);
+
+    // Find the selected item in the inventory and update price
+    const selectedItem = inventory.find((item) => item.item_name === selectedDrug);
+    setPrice(selectedItem ? selectedItem.price : 0); // Set price or 0 if not found
+  };
 
   return (
     <div className="apt-container">
       <div>
         <h3>Appointment ID: {apt._id}</h3>
-        
-        <h3>
-          Patient Name : {patient.firstName} {patient.lastName}
-        </h3>
-
+        <h3>Patient Name : {patient.firstName} {patient.lastName}</h3>
         <h4>Notes : {apt.notes}</h4>
-        <button className="view-patient-btn" onClick={downloadProfile}>
-          View Patient Details
-        </button>
+        <button className="view-patient-btn" onClick={downloadProfile}>View Patient Details</button>
         <h3>Appointment No : {apt.appointmentNo}</h3>
       </div>
 
       <div>
         <textarea
           className="pres-text"
-          name=""
-          id=""
           cols="30"
           rows="10"
           value={text}
-          onChange={(e) => {
-            setText(e.target.value);
-          }}
+          onChange={(e) => setText(e.target.value)}
         ></textarea>
       </div>
 
       <div>
-        <input
+        <select
           className="pres-inputs"
+          placeholder="Medicine Name"
+          value={drug}
+          onChange={handleDrugChange}
+        >
+          <option value="" disabled>Select Medicine</option>
+          {inventory.map((item) => (
+            <option key={item.item_id} value={item.item_name}>{item.item_name}</option>
+          ))}
+        </select>
+
+        {/* New input field for displaying the price */}
+        <input
           type="text"
-          placeholder="Prescription Name"
-          onChange={(e) => {
-            setDrug(e.target.value);
-          }}
+          className="pres-inputs"
+          placeholder="Price"
+          value={price > 0 ? `$${price}` : ""}
+          readOnly
         />
+
         <input
           className="before-after-radio"
           type="radio"
           name="befoAfter"
           value="Before"
-          checked={beforAfter == "Before"}
+          checked={beforAfter === "Before"}
           onChange={handleBeforeAndAfter}
         />
-        <label htmlFor="">Before Meal</label>
+        <label>Before Meal</label>
         <input
           className="before-after-radio"
           type="radio"
           name="befoAfter"
           value="After"
-          checked={beforAfter == "After"}
+          checked={beforAfter === "After"}
           onChange={handleBeforeAndAfter}
         />
-        <label htmlFor="">After Meal</label> <br />
-        <div className="pres-form">
-          <div>
-            <input
-              type="checkbox"
-              checked={morning}
-              onChange={(e) => {
-                if (morning) {
-                  setMorning(false);
-                } else {
-                  setMorning(true);
-                }
-              }}
-            />
-            <label htmlFor="">Morning</label>
-          </div>
+        <label>After Meal</label> <br />
 
-          {morning == true ? (
-            <input
-              className="pres-inputs"
-              type="number"
-              placeholder="Quantity..."
-              name="quantity"
-              value={morningQ}
-              onChange={(e) => {
-                setMorningQ(e.target.value);
-              }}
-            />
-          ) : (
-            <input
-              className="pres-inputs"
-              type="number"
-              placeholder="Quantity..."
-              name="quantity"
-              disabled
-              value={morningQ}
-              onChange={(e) => {
-                setMorningQ(e.target.value);
-              }}
-            />
-          )}
-        </div>
         <div className="pres-form">
-          <div>
-            <input
-              type="checkbox"
-              checked={evening}
-              onChange={(e) => {
-                if (evening) {
-                  setEvening(false);
-                } else {
-                  setEvening(true);
-                }
-              }}
-            />
-            <label htmlFor="">Evening</label>
-          </div>
-          {evening == true ? (
-            <input
-              className="pres-inputs"
-              type="number"
-              placeholder="Quantity..."
-              name="quantity"
-              value={eveningQ}
-              onChange={(e) => {
-                setEveningQ(e.target.value);
-              }}
-            />
-          ) : (
-            <input
-              className="pres-inputs"
-              type="number"
-              placeholder="Quantity..."
-              name="quantity"
-              disabled
-              value={eveningQ}
-              onChange={(e) => {
-                setEveningQ(e.target.value);
-              }}
-            />
-          )}{" "}
+          <input
+            type="checkbox"
+            checked={morning}
+            onChange={() => setMorning(!morning)}
+          />
+          <label>Morning</label>
+          <input
+            className="pres-inputs"
+            type="number"
+            placeholder="Quantity..."
+            value={morning ? morningQ : 0}
+            disabled={!morning}
+            onChange={(e) => setMorningQ(e.target.value)}
+          />
         </div>
+
         <div className="pres-form">
-          <div>
-            <input
-              type="checkbox"
-              checked={night}
-              onChange={(e) => {
-                if (night) {
-                  setNight(false);
-                } else {
-                  setNight(true);
-                }
-              }}
-            />
-            <label htmlFor="">Night</label>
-          </div>
-
-          {night == true ? (
-            <input
-              className="pres-inputs"
-              type="number"
-              placeholder="Quantity..."
-              name="quantity"
-              value={nightQ}
-              onChange={(e) => {
-                setNightQ(e.target.value);
-              }}
-            />
-          ) : (
-            <input
-              className="pres-inputs"
-              type="number"
-              placeholder="Quantity..."
-              name="quantity"
-              disabled
-              value={nightQ}
-              onChange={(e) => {
-                setNightQ(e.target.value);
-              }}
-            />
-          )}
+          <input
+            type="checkbox"
+            checked={evening}
+            onChange={() => setEvening(!evening)}
+          />
+          <label>Evening</label>
+          <input
+            className="pres-inputs"
+            type="number"
+            placeholder="Quantity..."
+            value={evening ? eveningQ : 0}
+            disabled={!evening}
+            onChange={(e) => setEveningQ(e.target.value)}
+          />
         </div>
-      </div>
 
-      <div>
-        <button id="btn-generate-pres" onClick={generatePres}>
-          Generate Prescription
-        </button>
-        <button id="btn-add-pres" onClick={addToPres}>
-          Add To prescription
-        </button>
+        <div className="pres-form">
+          <input
+            type="checkbox"
+            checked={night}
+            onChange={() => setNight(!night)}
+          />
+          <label>Night</label>
+          <input
+            className="pres-inputs"
+            type="number"
+            placeholder="Quantity..."
+            value={night ? nightQ : 0}
+            disabled={!night}
+            onChange={(e) => setNightQ(e.target.value)}
+          />
+        </div>
+
+        <button id="btn-generate-pres" onClick={generatePres}>Generate Prescription</button>
+        <button id="btn-add-pres" onClick={addToPres}>Add To prescription</button>
       </div>
 
       <div>
         <h2>Prescriptions</h2>
-        {prescriptions.map((item, index) => (
-          <SinglePrescription prescription={item} />
+        {prescriptions.map((item) => (
+          <SinglePrescription key={item._id} prescription={item} />
         ))}
       </div>
-      <div></div>
 
-      {apt.consulted  ? (
-        
-            <button className="btn-mark-consulted">Consulted</button>
-        
-      ) : (
-      
+      <div>
+        {apt.consulted ? (
+          <button className="btn-mark-consulted">Consulted</button>
+        ) : (
           <button className="btn-mark-consulted" onClick={markConsulted}>Mark as Consulted</button>
-          
-      )}
-      
+        )}
+      </div>
     </div>
   );
 };
