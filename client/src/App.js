@@ -16,20 +16,21 @@ import ViewChannel from "./components/ViewChannel";
 import AddChannel from "./components/AddChannel";
 import SearchChannels from "./components/SearchChannels";
 import PatientAppointments from "./components/PatientAppointments";
-import LaboratoryDashboard from "./components/LaboratoryDashboard";
+import LaboratoryDashboard from "./components/Admin/LaboratoryDashboard";
 import AddPatientReport from "./components/AddPatientReport";
 import EditPatientProfile from "./components/EditPatientProfile";
 import PatientProfile from "./components/PatientProfile";
 import EditChannel from "./components/EditChannel";
-import StaffDashboard from "./components/StaffDashboard";
-import AddDoctor from "./components/AddDoctor";
+import StaffDashboard from "./components/Admin/StaffDashboard";
+import AddDoctor from "./components/Admin/AddDoctor";
 import EditAppointment from "./components/EditAppointment";
 import EditStaff from "./components/EditStaff";
 import DoctorProfile from "./components/DoctorProfile";
-import StaffProfile from "./components/StaffProfile";
+import StaffProfile from "./components/Admin/StaffProfile";
 import EditReport from "./components/EditReport";
 import MyRecords from "./components/MyRecords";
 import EditRecord from "./components/EditRecord";
+import AddInventory from "./components/Admin/AddInventory";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
           <Route path="/adminDashboard" element={<AdminDashboard />} />
           <Route path="/doctorDashboard" element={<DoctorDashboard />} />
           <Route path="/doctorProfile" element={<DoctorProfile />} />
+          <Route path="/inventory" element={<AddInventory />} />
           
 
           <Route path="/viewChannel/:cid" element={<ViewChannel />} />

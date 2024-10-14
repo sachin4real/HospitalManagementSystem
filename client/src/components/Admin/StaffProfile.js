@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import DashboardHeader from "./DashboardHeader";
+import DashboardHeader from "../DashboardHeader";
 import axios from "axios";
 
 const StaffProfile = () => {
@@ -73,19 +73,22 @@ const StaffProfile = () => {
       <DashboardHeader />
 
       <div className="main-container">
-        <div className="nav-bar">
+      <div className="nav-bar">
           <ul className="nav-list">
             <a href="/laboratory">
               <li className="nav-element">Laboratory</li>
             </a>
             <a href="/staff">
-              <li className="nav-element ">Staff Management</li>
+              <li className="nav-element">Staff Management</li>
             </a>
             <a href="/doctor">
               <li className="nav-element">Add Doctor</li>
             </a>
             <a href="/staffProfile">
               <li className="nav-element active-element">Profile</li>
+            </a>
+            <a href="/inventory">
+              <li className="nav-element">Inventory</li>
             </a>
           </ul>
         </div>
