@@ -1,0 +1,173 @@
+#login-container {
+  width: 80%;
+  height: 70vh;
+  padding: 0px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 0px;
+  padding: 0%;
+
+  border-radius: 10px;
+
+  box-shadow: 5px 5px 8px 5px #e2e2e2;
+}
+
+#patient-registration-container {
+  width: 80%;
+  min-height: 70vh;
+  padding: 0px;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 0px;
+  padding: 0%;
+
+  border-radius: 10px;
+
+  box-shadow: 5px 5px 8px 5px #e2e2e2;
+}
+
+#login-form-container {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#login-form {
+  width: 100%;
+}
+
+#login-whole {
+  min-height: 90vh;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+#login-message {
+  /* background-color: black; */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: whitesmoke;
+  font-size: larger;
+  margin: 0;
+  padding: 0%;
+
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #0E0F35;
+  /* background: linear-gradient(to right, #833ab4, #fd1d1d, #fcb045); */
+}
+
+#login-button,
+#verify-button {
+  background: linear-gradient(to right, #0E0F35, #6441a5);
+  width: 40%;
+  border: 0;
+  color: whitesmoke;
+  height: 40px;
+  border-radius: 5px;
+}
+
+#cancel-button {
+  background: linear-gradient(to right, #ff4b1f, #ff9068);
+  width: 40%;
+  border: 0;
+  color: whitesmoke;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.input-fields {
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+  width: 50%;
+  font-size: larger;
+}
+
+.welcome-text {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.otp-input {
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+  font-size: larger;
+  margin: 5px;
+}
+
+.buttons {
+  background: linear-gradient(to right, #0E0F35, #6441a5);
+  width: 40%;
+  border: 0;
+  color: whitesmoke;
+  height: 40px;
+  border-radius: 5px;
+  font-size: large;
+}
+
+#choose-login-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  vertical-align: middle;
+  align-items: center;
+
+  margin-top: 15%;
+  width: 100vw;
+  height: 100%;
+  /* background-image: url("../public/images/Hospital-logo-W.png ")  ;
+  background-size: auto;
+  background-position: contain; 
+  background-repeat: no-repeat;  */
+}
+
+#center-choose {
+  height: 100%;
+  padding-top: 15%;
+}
+
+
+#login-image {
+  margin-top: -20%;
+  width: 70%;
+}
+
+/* .signup-form {
+  width: 100%;
+  background-image: url("../public/images/Hospital-logo-W.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+} */
+
+
+.signup-heading {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  padding-left: 300px;
+  background-color: #0E0F35;
+}
+
+.signup-img {
+  width: 200px;
+}
+
+.signupheading {
+  text-align: left;
+  font-size: 46px;
+  margin-top: 60px;
+  color: white;
+
+}
+
+.login-image {
+  width: 400px;
+}
