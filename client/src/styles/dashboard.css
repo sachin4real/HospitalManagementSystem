@@ -1,0 +1,730 @@
+.header-dashboard {
+  display: grid;
+  grid-template-columns: 1fr 2fr 6fr 2fr;
+  /* background-color: white; */
+  background-color: #0E0F35;
+
+  align-items: center;
+  color: white;
+  /* border-bottom: 1px solid rgb(219, 219, 219); */
+  box-shadow: 5px 5px 8px 5px #e2e2e2;
+}
+
+.logo-img {
+  height: 100px;
+  margin-left: 30px;
+}
+.header-icons {
+  align-items: end;
+}
+
+.profile-icon {
+  border-radius: 50%;
+  width: 90%;
+}
+
+.profile-container {
+  display: grid;
+  grid-template-columns: 3fr 3fr 1fr;
+  /* padding-top: 5px;
+    padding-bottom: 5px; */
+
+  column-gap: 15px;
+
+  align-items: center;
+}
+
+.profile-container a {
+  text-decoration: none;
+  transition: transform 0.3s;
+
+  color: #514a9d;
+}
+
+.profile-container a:hover {
+  transform: scale(1.2);
+}
+
+.profile-btn {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  align-items: center;
+  column-gap: 10px;
+}
+.profile-tag {
+  margin-right: 30px;
+}
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+.nav-bar {
+  background-color: white;
+  height: 90vh;
+  /* border-right: 1px solid rgb(219, 219, 219); */
+
+  box-shadow: 5px 5px 8px 5px #e2e2e2;
+
+  padding-top: 10px;
+}
+
+.content-container {
+  height: 85vh;
+  overflow: auto;
+  padding-bottom: 40px;
+}
+
+.nav-list {
+  list-style: none;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.nav-element {
+  background-color: #f0ffff;
+
+  border-radius: 5px;
+  margin-bottom: 10px;
+  color: black;
+  padding: 5px;
+  font-size: 20px;
+
+  box-shadow: 3px 3px 8px 5px #e9e9e9a1;
+}
+
+.nav-element:hover,
+.active-element {
+  /* background-color: #0F52BA; */
+  /* background: linear-gradient(to right, #514a9d, #24c6dc); */
+  background: linear-gradient(to right, #0E0F35, #6441a5);
+  color: white;
+}
+
+.btn-logout {
+  background: linear-gradient(to right, #dd2476, #ff512f);
+  border: 0;
+  border-radius: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: white;
+  font-size: large;
+
+  transition: transform 0.3s;
+}
+
+.btn-logout:hover {
+  transform: scale(1.1);
+}
+
+.channel-container-doctor {
+  margin-right: 30px;
+  margin-left: 30px;
+  margin-bottom: 20px;
+  box-shadow: 5px 5px 8px 5px #e2e2e2;
+  border-radius: 5px;
+
+  padding: 10px;
+
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+}
+
+.channel-buttons {
+  width: 70%;
+  height: 40px;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+  font-size: large;
+}
+
+#btn-view-channel {
+  background: linear-gradient(to right, #56ab2f, #a8e063);
+}
+
+#btn-edit-channel {
+  background: linear-gradient(to right, #2a0845, #6441a5);
+}
+
+#btn-delete-channel {
+  background: linear-gradient(to right, #dd2476, #ff512f);
+}
+
+a {
+  text-decoration: none;
+}
+
+.heading-channels {
+  margin-left: 30px;
+}
+
+.add-channel-form {
+  margin-right: 30px;
+  margin-left: 30px;
+  height: 600px;
+  padding: 40px;
+
+  box-shadow: 5px 5px 8px 5px #e2e2e2;
+  border-radius: 5px;
+}
+
+.add-form-input {
+  border: none;
+  outline: none;
+  width: 80%;
+  font-size: larger;
+  background-color: #e2e2e2;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#add-channel-btn {
+  background: linear-gradient(to right, #56ab2f, #a8e063);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  height: 50px;
+
+  color: white;
+  font-size: large;
+}
+
+#make-apt-btn {
+  background: linear-gradient(to right, #56ab2f, #a8e063);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  height: 50px;
+
+  color: white;
+  font-size: large;
+}
+
+.search-container {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
+
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 30px;
+}
+
+.search-inputs {
+  border: none;
+  outline: none;
+  width: 80%;
+  font-size: larger;
+  background-color: #e2e2e2;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.search-btn {
+  background: linear-gradient(to right, #2a0845, #6441a5);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 80%;
+
+  color: white;
+  font-size: large;
+}
+
+.apt-inputs {
+  border: none;
+  outline: none;
+  width: 90%;
+  font-size: larger;
+  background-color: #e2e2e2;
+  padding: 10px;
+  border-radius: 5px;
+
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.btn-makeApt {
+  background: linear-gradient(to right, #2a0845, #6441a5);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 20%;
+  margin-left: 30px;
+  color: white;
+  font-size: large;
+}
+
+.profile-inputs {
+  border: none;
+  outline: none;
+  width: 90%;
+  font-size: larger;
+  background-color: #e2e2e2;
+  padding: 10px;
+  border-radius: 5px;
+
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.update-btn-profile {
+  background: linear-gradient(to right, #2a0845, #6441a5);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 20%;
+  margin-left: 30px;
+  color: white;
+  font-size: large;
+}
+
+.btn-profile-delete {
+  background: linear-gradient(to right, #dd2476, #ff512f);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 20%;
+  margin-left: 30px;
+  color: white;
+  font-size: large;
+  margin-top: 30px;
+}
+
+.profile-labels {
+  margin-left: 30px;
+  font-size: large;
+  font-weight: bold;
+}
+
+.apt-container {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  margin-left: 30px;
+  margin-top: 20px;
+  width: 90%;
+  box-shadow: 5px 5px 8px 5px #e2e2e2;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.add-record-container {
+
+  margin-left: 30px;
+  margin-top: 20px;
+  width: 90%;
+  box-shadow: 5px 5px 8px 5px #e2e2e2;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+#btn-delete-apt {
+  background: linear-gradient(to right, #dd2476, #ff512f);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 90%;
+  height: 20%;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: white;
+  font-size: large;
+  margin-top: 30px;
+}
+
+#btn-edit-apt {
+  background: linear-gradient(to right, #56ab2f, #a8e063);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 90%;
+  height: 20%;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: white;
+  font-size: large;
+  margin-top: 30px;
+}
+
+#btn-generate-pres {
+  background: linear-gradient(to right, #2a0845, #6441a5);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 90%;
+
+  color: white;
+  font-size: medium;
+  margin-top: 30px;
+}
+
+#btn-add-pres {
+  background: linear-gradient(to right, #56ab2f, #a8e063);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 90%;
+
+  color: white;
+  font-size: medium;
+  margin-top: 30px;
+}
+
+.before-after-radio {
+  border: none;
+  outline: none;
+  font-size: larger;
+  background-color: #e2e2e2;
+
+  margin-right: 30px;
+}
+
+.pres-inputs {
+  border: none;
+  outline: none;
+  width: 50%;
+  font-size: larger;
+  background-color: #e2e2e2;
+  padding: 10px;
+  border-radius: 5px;
+
+  margin-bottom: 10px;
+}
+
+.pres-form {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.pres-labels {
+  width: 100px;
+  font-size: medium;
+  font-weight: bold;
+}
+
+.pres-text {
+  border: none;
+  outline: none;
+  width: 90%;
+  font-size: larger;
+  background-color: #e2e2e2;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.btn-download-pres {
+  background: linear-gradient(to right, #56ab2f, #a8e063);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 50%;
+
+  color: white;
+  font-size: medium;
+  margin-top: 30px;
+}
+
+.channel-details {
+  margin-left: 30px;
+  margin-top: 30px;
+  padding: 10px;
+
+  width: 90%;
+  box-shadow: 5px 5px 8px 5px #e2e2e2;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.add-patient-report-container,
+.add-lab-container,
+.add-doctor-container,
+.add-staff-container {
+  margin-left: 30px;
+  margin-top: 30px;
+
+  width: 90%;
+  box-shadow: 5px 5px 8px 5px #e2e2e2;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.patient-report-inputs,
+.add-lab-inputs,
+.add-doctor-inputs,
+.add-staff-inputs {
+  border: none;
+  outline: none;
+  width: 95%;
+  font-size: larger;
+  background-color: #e2e2e2;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+#create-patient-report-btn,
+#add-lab-button,
+#add-doctor-button,
+#add-staff-button {
+  background: linear-gradient(to right, #56ab2f, #a8e063);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 30%;
+
+  color: white;
+  font-size: medium;
+  margin-top: 30px;
+}
+
+.tests-table {
+  padding: 10px;
+  margin-left: 30px;
+  margin-top: 30px;
+  border-radius: 5px;
+  width: 90%;
+
+  box-shadow: 5px 5px 8px 5px #e2e2e2;
+}
+
+.th-tests {
+  background: linear-gradient(to right, #56ab2f, #a8e063);
+  height: 40px;
+}
+
+.tr-tests {
+  border-bottom: 1px solid #c5c5c5;
+  height: 40px;
+}
+
+.add-report-for-test {
+  background: linear-gradient(to right, #2a0845, #6441a5);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 60%;
+
+  color: white;
+  font-size: small;
+}
+
+.download-btn-pres {
+  background: linear-gradient(to right, #2a0845, #6441a5);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 60%;
+
+  color: white;
+  font-size: small;
+  margin-left: 10%;
+}
+
+.download-records-btn , .edit-records-btn , .delete-records-btn{
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 40%;
+
+  color: white;
+  font-size: small;
+  margin-left: 10%;
+  margin-bottom: 5px;
+}
+
+.download-records-btn {
+  background: linear-gradient(to right, #2a0845, #6441a5);
+}
+.edit-records-btn {
+  background: linear-gradient(to right, #56ab2f, #a8e063);
+}
+
+.delete-records-btn {
+  background: linear-gradient(to right, #dd2476, #ff512f);
+}
+.download-report-for-test {
+  background: linear-gradient(to right, #56ab2f, #a8e063);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 30%;
+
+  color: white;
+  font-size: small;
+  margin-right: 5px;
+}
+.patientProfile {
+  padding: 10px;
+  margin-left: 30px;
+  margin-top: 30px;
+  border-radius: 5px;
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  box-shadow: 5px 5px 8px 5px #e2e2e2;
+}
+
+.download-profile-btn {
+  background: linear-gradient(to right, #56ab2f, #a8e063);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 20%;
+  margin-left: 30px;
+  color: white;
+  font-size: large;
+}
+
+.channels-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.view-patient-btn {
+  background: linear-gradient(to right, #56ab2f, #a8e063);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+
+  color: white;
+  font-size: large;
+}
+
+.channel-details-apt {
+  margin-left: 30px;
+}
+
+.search-tests-input {
+  margin-left: 30px;
+
+  border: none;
+  outline: none;
+  width: 70%;
+  font-size: larger;
+  background-color: #e2e2e2;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-top: 30px;
+}
+
+.btn-delete-staff,
+.btn-edit-staff {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 25%;
+
+  margin-bottom: 5px;
+
+  color: white;
+  font-size: small;
+  margin-left: 20%;
+}
+
+.btn-delete-staff {
+  background: linear-gradient(to right, #dd2476, #ff512f);
+  margin-right: 10px;
+  margin-left: 25%;
+}
+
+.btn-edit-staff {
+  background: linear-gradient(to right, #2a0845, #6441a5);
+  margin-left: 5px;
+}
+
+.delete-doctor-btn {
+  background: linear-gradient(to right, #dd2476, #ff512f);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 70%;
+
+  margin-bottom: 5px;
+
+  color: white;
+  font-size: small;
+}
+
+.btn-mark-consulted {
+  background: linear-gradient(to right, #2a0845, #6441a5);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 50%;
+
+  margin-bottom: 5px;
+  margin-top: 30px;
+
+  color: white;
+  font-size: large;
+}
+
+.doctor-profile-container {
+  padding: 10px;
+  margin-left: 30px;
+  margin-top: 30px;
+  border-radius: 5px;
+  width: 90%;
+
+  box-shadow: 5px 5px 8px 5px #e2e2e2;
+}
+
+.update-doctor-btn,
+.update-staff-btn {
+  background: linear-gradient(to right, #2a0845, #6441a5);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 20%;
+
+  margin-bottom: 5px;
+  margin-top: 30px;
+
+  color: white;
+  font-size: large;
+}
+
+.btn-download-staff {
+  background: linear-gradient(to right, #56ab2f, #a8e063);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 60%;
+  margin-left: 22%;
+
+  margin-bottom: 5px;
+
+  color: white;
+  font-size: smaller;
+}
+
+.staff-profile-container {
+  padding: 10px;
+  margin-left: 30px;
+  margin-top: 30px;
+  border-radius: 5px;
+  width: 90%;
+
+  box-shadow: 5px 5px 8px 5px #e2e2e2;
+}
+
+.header-topic {
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+
+.delete-test-btn {
+  background: linear-gradient(to right, #dd2476, #ff512f);
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 40%;
+
+  margin-top: 10px;
+
+  color: white;
+  font-size: small;
+}
