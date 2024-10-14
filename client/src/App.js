@@ -31,6 +31,7 @@ import EditReport from "./components/EditReport";
 import MyRecords from "./components/MyRecords";
 import EditRecord from "./components/EditRecord";
 import AddInventory from "./components/Admin/AddInventory";
+import PrescriptionSummary from "./components/PrescriptionSummary";
 
 function App() {
   return (
@@ -50,6 +51,8 @@ function App() {
           <Route path="/myAppointments" element={<PatientAppointments />} />
           <Route path="/editApt/:aid/:cid" element={<EditAppointment />} />
           <Route path="/makeApt/:cid" element={<MakeAppointment />} />
+          <Route path="/PrescriptionSummary/:itemid" element={<PrescriptionSummary />} />
+
 
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<ChooseLogin />} />

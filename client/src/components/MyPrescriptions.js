@@ -87,6 +87,7 @@ const MyPrescriptions = () => {
           <th>Date</th>
           <th>Prescription</th>
           <th>Actions</th>
+          
         </tr>
       
       {prescriptions.map((item,index)=>(
