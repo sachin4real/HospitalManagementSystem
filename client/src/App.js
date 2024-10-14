@@ -32,6 +32,7 @@ import MyRecords from "./components/MyRecords";
 import EditRecord from "./components/EditRecord";
 import AddInventory from "./components/Admin/AddInventory";
 
+
 function App() {
   return (
     <div className="App">
@@ -50,6 +51,8 @@ function App() {
           <Route path="/myAppointments" element={<PatientAppointments />} />
           <Route path="/editApt/:aid/:cid" element={<EditAppointment />} />
           <Route path="/makeApt/:cid" element={<MakeAppointment />} />
+       
+
 
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<ChooseLogin />} />

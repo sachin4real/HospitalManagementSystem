@@ -5,48 +5,18 @@ const RowPrescription = ({ item }) => {
   const logo = new Image();
   logo.src = "/images/Hospital-logo-W.png";
 
-  function downloadPrescription() {
-    const doc = new jsPDF();
-    const margin = 10;
-    const lineHeight = 5;
 
-    const text = `\n\nDate :${new Date(item.date).toString()} \n\n ${
-      item.text
-    }`;
-    const splitText = doc.splitTextToSize(
-      text,
-      doc.internal.pageSize.width - margin * 2
-    );
-    doc.text(splitText, 10, 60);
 
-    const pdfWidth = doc.internal.pageSize.getWidth();
-    const pdfHeight = doc.internal.pageSize.getHeight();
-
-    const canvas1 = document.createElement("canvas");
-    canvas1.width = logo.width;
-    canvas1.height = logo.height;
-    const ctx1 = canvas1.getContext("2d");
-    ctx1.drawImage(logo, 0, 0, logo.width, logo.height);
-    const dataURL1 = canvas1.toDataURL("image/png");
-
-    doc.addImage(
-      dataURL1,
-      "PNG",
-      5,
-      5,
-      pdfWidth / 4,
-      (pdfWidth / 4) * (logo.height / logo.width)
-    );
-
-    doc.text(
-      "Helasuwa.lk  \nTel: 0771231231 \nAddress No: No:11,Kandy road,\n",
-      pdfWidth / 4 + 15,
-      20
-    );
+  function viewSummery() {
+    // Define the URL to which you want to navigate
+    const url = `/PrescriptionSummary/${item._id}`; 
+  
    
-    doc.save(`${item._id}.pdf`);
-    //------------------------------------
+    // Navigate to the specified URL
+    window.location.href = url;
   }
+
+ 
   return (
     <tr>
       <td>{item._id}</td>
@@ -57,8 +27,9 @@ const RowPrescription = ({ item }) => {
         {item.text.length > 20 ? `${item.text.slice(0, 20)}...` : item.text}
       </td>
       <td>
-        <button className="download-btn-pres" onClick={downloadPrescription}>
-          Download
+       
+        <button className="download-btn-pres" onClick={viewSummery}>
+          View
         </button>
       </td>
     </tr>

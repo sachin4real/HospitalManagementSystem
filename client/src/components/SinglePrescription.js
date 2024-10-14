@@ -71,4 +71,4 @@ const SinglePrescription = ({ prescription }) => {
   );
 };
 
-export default SinglePrescription;
+export default SinglePrescription; 
