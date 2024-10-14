@@ -25,7 +25,7 @@ export default function RowPrescriptionView({ item, onClick }) {
                 >
                     View
                 </button>
-                <button 
+                {/* <button 
                     className="download-btn-pres" 
                     onClick={(e) => {
                         e.stopPropagation(); // Prevent row click from triggering
@@ -33,7 +33,7 @@ export default function RowPrescriptionView({ item, onClick }) {
                     }}
                 >
                     Download
-                </button>
+                </button> */}
             </td>
         </tr>
     );

@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import RowPrescription from './RowPrescription';
+import RowPrescriptionView from './RowPrescriptionView';
+import PrescriptionDetails from './PrescriptionDetails';
 
 const MyPrescriptions = () => {
-    const [prescriptions ,setPrescriptions] = useState([]) ;
-    const [email, setEmail] = useState("") ;
-    const [password , setPassword] = useState("") ;
-    const [pid ,setPid] = useState("") ;
+  const [prescriptions, setPrescriptions] = useState([]);
+  const [selectedPrescription, setSelectedPrescription] = useState(null); // State for selected prescription
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [pid, setPid] = useState('');
+  const [query, setQuery] = useState('');
 
-    const [query, setQuery] = useState("");
+
+   
 
     useEffect(()=>{
       // getUser() ;
@@ -79,23 +84,37 @@ const MyPrescriptions = () => {
         }}
       />
       </div>
-      <table className="tests-table">
-        <tr className='th-tests'>
-          <th>Prescription Id</th>
-          {/* <th>Patient</th> */}
-          <th>Appintment Id</th>
-          <th>Date</th>
-          <th>Prescription</th>
-          <th>Actions</th>
-          
-        </tr>
-      
-      {prescriptions.map((item,index)=>(
+      {selectedPrescription ? (
+                <PrescriptionDetails 
+                    prescription={selectedPrescription} 
+                    onBack={() => setSelectedPrescription(null)} 
+                />
+            ) : (
+                <table className="tests-table">
+                    <thead>
+                        <tr className="th-tests">
+                            <th>Prescription Id</th>
+                            <th>Appointment Id</th>
+                            <th>Date</th>
+                            <th>Prescription</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {prescriptions.map((item) => (
+                            <RowPrescriptionView 
+                                key={item._id} 
+                                item={item} 
+                                onClick={() => setSelectedPrescription(item)} // Pass function to view prescription
+                            />
+                        ))}
+                    </tbody>
+                </table>
+            )}
 
-        <RowPrescription item={item} />
-        
-      ))}
-      </table>
+     <div>
+
+     </div>
     </div>
   )
 }
