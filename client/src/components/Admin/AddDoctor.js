@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import AllDoctors from "./AllDoctors";
-import DashboardHeader from "./DashboardHeader";
-import SideBar from "./SideBar";
+import AllDoctors from "../AllDoctors";
+import DashboardHeader from "../DashboardHeader";
+import SideBar from "../SideBar";
 
 const AddDoctor = () => {
   const [name, setName] = useState("");
@@ -38,7 +38,7 @@ const AddDoctor = () => {
       <DashboardHeader />
 
       <div className="main-container">
-        <div className="nav-bar">
+      <div className="nav-bar">
           <ul className="nav-list">
             <a href="/laboratory">
               <li className="nav-element">Laboratory</li>
@@ -51,6 +51,9 @@ const AddDoctor = () => {
             </a>
             <a href="/staffProfile">
               <li className="nav-element">Profile</li>
+            </a>
+            <a href="/inventory">
+              <li className="nav-element">Inventory</li>
             </a>
           </ul>
         </div>
