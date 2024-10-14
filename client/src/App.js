@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Signup from "./components/Signup";
 import Dashboard from "./components/AdminDashboard";
-import ChooseLogin from "./components/Logins/ChooseLogin";
+import ChooseLogin from "./pages/Logins/ChooseLogin";
 import PatientHome from "./components/PatientHome";
 import AdminDashboard from "./components/AdminDashboard";
-import PatientLogin from "./components/Logins/PatientLogin";
-import DoctorLogin from "./components/Logins/DoctorLogin";
-import AdminLogin from "./components/Logins/AdminLogin";
+import PatientLogin from "./pages/Logins/PatientLogin";
+import DoctorLogin from "./pages/Logins/DoctorLogin";
+import AdminLogin from "./pages/Logins/AdminLogin";
 import DoctorDashboard from "./components/DoctorDashboard";
 import MakeAppointment from "./components/MakeAppointment";
 import ViewChannel from "./components/ViewChannel";
